@@ -1,0 +1,7 @@
+version: '3'
+services:
+  ez_date:
+    build: .
+    ports:
+      - 8080:80
+    image: ciscn/ez_date

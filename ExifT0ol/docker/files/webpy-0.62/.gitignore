@@ -1,0 +1,10 @@
+*.egg-info
+*.py[cod]
+*$py.class
+.coverage
+.DS_Store
+.idea
+__pycache__/
+build/
+dist/
+docs/_build/

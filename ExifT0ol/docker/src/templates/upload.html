@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>文件上传</title>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333333;
+    }
+
+    .upload-area {
+      margin-top: 20px;
+      border: 2px dashed #cccccc;
+      padding: 20px;
+      cursor: pointer;
+    }
+
+    .upload-area:hover {
+      background-color: #f9f9f9;
+    }
+
+    .upload-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .upload-text {
+      color: #999999;
+    }
+
+    .selected-file {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .submit-button {
+      margin-top: 20px;
+      background-color: #3366cc;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background-color: #2554a5;
+    }
+
+    .exif-info {
+      margin-top: 20px;
+    }
+
+    .exif-title {
+      font-weight: bold;
+    }
+
+    .exif-value {
+      margin-top: 10px;
+      color: #777777;
+    }
+
+    #fileInput {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Upload a photo 4 exif</h1>
+    <div class="upload-area" id="uploadArea" onclick="fileInput.click()">
+      <div class="upload-icon">&#8681;</div>
+      <div class="upload-text">Click to choose a file</div>
+    </div>
+    <form action="/upload" enctype="multipart/form-data" method="post">
+      <input type="file" id="fileInput" name="file" onchange="handleFileChange(event)" />
+      <div class="selected-file" id="selectedFile"></div>
+      <button type="submit" class="submit-button">Upload</button>
+      <div class="exif-info" id="exifInfo"></div>
+    </form>
+  </div>
+
+  <script>
+    const selectedFileElement = document.getElementById('selectedFile');
+    const exifInfoElement = document.getElementById('exifInfo');
+    let selectedFile = null;
+
+    function handleFileChange(event) {
+      selectedFile = event.target.files[0];
+      setSelectedFile(selectedFile);
+    }
+
+    function setSelectedFile(file) {
+      selectedFileElement.innerText = file ? `已选择文件：\${file.name}` : '';
+    }
+
+    function setExifInfo(exif) {
+      exifInfoElement.innerHTML = '';
+      for (const key in exif) {
+        if (exif.hasOwnProperty(key)) {
+          const titleElement = document.createElement('div');
+          titleElement.className = 'exif-title';
+          titleElement.innerText = key;
+
+          const valueElement = document.createElement('div');
+          valueElement.className = 'exif-value';
+          valueElement.innerText = exif[key];
+
+          exifInfoElement.appendChild(titleElement);
+          exifInfoElement.appendChild(valueElement);
+        }
+      }
+    }
+  </script>
+</body>
+</html>

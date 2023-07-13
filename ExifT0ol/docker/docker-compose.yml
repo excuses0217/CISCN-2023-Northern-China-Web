@@ -1,0 +1,7 @@
+version: '3.3'
+services:
+  exiftool:
+    build: ./
+    image: ciscn/exiftool
+    ports:
+        - 8081:8080

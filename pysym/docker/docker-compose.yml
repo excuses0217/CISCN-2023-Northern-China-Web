@@ -5,8 +5,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: ciscn/pysym
     ports:
-      - "80:1337"
+      - "8080:1337"
     volumes:
       - .:/srv
     user: "1000"

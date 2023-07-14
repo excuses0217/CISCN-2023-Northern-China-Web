@@ -1,0 +1,8 @@
+version: '3'
+services:
+  ezruby:
+    build: .
+    image: ciscn/ezruby
+    container_name: ezruby
+    ports:
+      - "9000:4567"

@@ -5,6 +5,6 @@ services:
     image: ciscn/filechecker
     container_name: filechecker
     ports:
-      - "9000:80"
+      - "8088:80"
     volumes:
       - .:/var/www/html/

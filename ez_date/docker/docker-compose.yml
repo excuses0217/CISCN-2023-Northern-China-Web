@@ -5,5 +5,5 @@ services:
     image: ciscn/ez_date
     container_name: ez_date
     ports:
-      - 8080:80
+      - 8082:80
     

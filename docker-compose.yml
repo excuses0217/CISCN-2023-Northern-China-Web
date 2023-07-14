@@ -1,0 +1,51 @@
+version: '3'
+services:
+  pysym:
+    build:
+      context: ./pysym/docker
+      dockerfile: Dockerfile
+    image: ciscn/pysym
+    container_name: pysym
+    ports:
+      - "8080:1337"
+    volumes:
+      - .:/srv
+    user: "1000"
+
+  ExifT0ol:
+    build:
+      context: ./ExifT0ol/docker
+      dockerfile: Dockerfile
+    image: ciscn/exiftool
+    container_name: exiftool
+    ports:
+      - 8081:8080
+
+  ez_date:
+    build:
+      context: ./exiftool/docker
+      dockerfile: Dockerfile
+    image: ciscn/ez_date
+    container_name: ez_date
+    ports:
+      - 8082:80
+
+  filechecker:
+    build:
+      context: ./filechecker/docker
+      dockerfile: Dockerfile
+    image: ciscn/filechecker
+    container_name: filechecker
+    ports:
+      - "8088:80"
+    volumes:
+      - .:/var/www/html/
+
+  ezruby:
+    build:
+      context: ./ezruby/docker
+      dockerfile: Dockerfile
+    image: ciscn/ezruby
+    container_name: ezruby
+    ports:
+      - "9000:4567"

@@ -29,3 +29,5 @@ docker run -d -p 8080:80 pysym:latest
 - ExifT0ol
 - ez_date
 - filechecker
+- ezruby
+- dolphin_haihai（还未完成docker部署，仅上传源码）

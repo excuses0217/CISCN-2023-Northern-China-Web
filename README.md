@@ -10,13 +10,22 @@
 ## 快速开始
 
 ```bash
-# 切换到相应题目目录
+# 运行单个环境，请切换到相应题目目录
 cd pysym/docker
 # 使用 docker-compose 一键启动环境
-docker-compose up
+docker-compose up -d
+
+# 使用 docker-compose 一键构建所有题目环境镜像
+docker-compose build
+# 如果你只想构建某个赛题的镜像，你可以在 docker-compose build 命令后面加上题目名
+docker-compose build pysym
+# 自定义端口运行环境
+docker run -d -p 8080:80 pysym:latest
 ```
 
 ## 题目目录
 
 - pysym
 - ExifT0ol
+- ez_date
+- filechecker

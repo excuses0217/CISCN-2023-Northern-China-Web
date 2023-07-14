@@ -3,5 +3,6 @@ services:
   exiftool:
     build: ./
     image: ciscn/exiftool
+    container_name: exiftool
     ports:
         - 8081:8080

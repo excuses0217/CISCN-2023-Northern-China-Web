@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: ciscn/pysym
+    container_name: pysym
     ports:
       - "8080:1337"
     volumes:

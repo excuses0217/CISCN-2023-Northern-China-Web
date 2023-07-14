@@ -1,0 +1,10 @@
+version: '3'
+services:
+  filechecker:
+    build: .
+    image: ciscn/filechecker
+    container_name: filechecker
+    ports:
+      - "9000:80"
+    volumes:
+      - .:/var/www/html/

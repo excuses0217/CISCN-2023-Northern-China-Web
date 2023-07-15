@@ -23,7 +23,7 @@ services:
 
   ez_date:
     build:
-      context: ./exiftool/docker
+      context: ./ez_date/docker
       dockerfile: Dockerfile
     image: ciscn/ez_date
     container_name: ez_date

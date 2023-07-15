@@ -15,7 +15,7 @@ cd pysym/docker
 # 使用 docker-compose 一键启动环境
 docker-compose up -d
 
-# 使用 docker-compose 一键构建所有题目环境镜像
+# 使用 docker-compose 一键构建所有题目环境镜像(非常不建议一次全部构建镜像)
 docker-compose build
 # 如果你只想构建某个赛题的镜像，你可以在 docker-compose build 命令后面加上题目名
 docker-compose build pysym

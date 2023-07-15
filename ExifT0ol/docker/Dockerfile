@@ -28,10 +28,6 @@ RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list \
 	&& chmod 4111 /readflag \
 	&& chmod +x /start.sh
 
-# 设置flag
-RUN echo "flag{$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 20 | head -n 1)}" > /flag
-RUN chmod 777 /flag
-
 ENTRYPOINT /start.sh
 
 EXPOSE 8080

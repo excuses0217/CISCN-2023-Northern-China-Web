@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>a simple scanner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-control {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .readonly {
+            background-color: #f2f2f2;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>a simple scanner</h2>
+        <form id="jsonForm">
+            <div class="form-group">
+                <label for="url">URL:</label>
+                <div class="input-group">
+                    <input type="text" id="urlPrefix" class="form-control readonly" value="http://127.0.0.1:8000/" readonly>
+                    <input type="text" id="urlSuffix" class="form-control" placeholder="Enter Route">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="module">Module:</label>
+                <select id="module" class="form-control">
+                    <option value="sqli_scan.UnionSqliScan.MySQLScan">Mysql Union Inject</option>
+                    <option value="sqli_scan.UnionSqliScan.MsSQLScan">Mssql Union Inject</option>
+                    <option value="sqli_scan.BlindSqliScan.MySQLScan">Mysql Blind Inject</option>
+                    <option value="xss_scan.HtmlXssScan">HTML XSS</option>
+                    <option value="xss_scan.JsXssScan">JS XSS</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Position:</label>
+                <div>
+                    <input type="checkbox" id="posParam" value="param">
+                    <label for="posParam">Param</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="posBody" value="body">
+                    <label for="posBody">Body</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="posJson" value="json">
+                    <label for="posJson">JSON</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="paramName">Param Name:</label>
+                <input type="text" id="paramName" class="form-control">
+            </div>
+            <button type="submit" class="btn">Scan Start</button>
+        </form>
+        <div id="response"></div>
+    </div>
+    <script>
+        document.getElementById('jsonForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const urlPrefix = document.getElementById('urlPrefix').value;
+            const urlSuffix = document.getElementById('urlSuffix').value;
+            const module = document.getElementById('module').value;
+            const pos = [];
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    pos.push(checkbox.value);
+                }
+            });
+            const paramName = document.getElementById('paramName').value;
+
+            const jsonData = {
+                url: urlPrefix + urlSuffix,
+                module: module,
+                pos: pos,
+                param_name: paramName
+            };
+
+            fetch('/scan_submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                const report = data.report;
+                if (report) {
+                    const aTag = document.createElement('a');
+                    aTag.href = report;
+                    aTag.textContent = 'click for report';
+                    aTag.target = '_blank';
+                    document.getElementById('response').appendChild(aTag);
+                } else {
+                    document.getElementById('response').textContent = 'no report';
+                }
+            })
+            .catch(error => {
+                document.getElementById('response').textContent = 'something error';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+version: '3.3'
+services:
+  ExifT0ol:
+    build: ./
+    image: ciscn/exiftool
+    container_name: exiftool
+    ports:
+      - 8081:8080

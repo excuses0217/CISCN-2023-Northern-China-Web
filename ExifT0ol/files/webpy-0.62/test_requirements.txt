@@ -1,0 +1,12 @@
+cheroot>=6.0.0
+DBUtils
+pytest>=5.4.1
+
+# DB drivers.
+# mysql
+mysqlclient>=1.4.6
+PyMySQL>=0.9.3
+mysql-connector-python>=8.0.19
+
+# pgsql
+psycopg2>=2.8.4

@@ -1,0 +1,57 @@
+$def with(filename, exif_info)
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EXIF</title>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333333;
+    }
+
+    table {
+      margin-top: 20px;
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .exif-title {
+      font-weight: bold;
+      color: #3366cc;
+      margin-bottom: 5px;
+    }
+
+    .exif-value {
+      color: #777777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <center><h1>EXIF Information</h1></center>
+    <ul>
+        $for key, value in exif_info.items():
+            <li><span class="exif-title">$key</span>: $value</li>
+    </ul>
+  </div>
+</body>
+</html>

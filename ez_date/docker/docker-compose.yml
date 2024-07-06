@@ -1,9 +1,0 @@
-version: '3'
-services:
-  ez_date:
-    build: .
-    image: ciscn/ez_date
-    container_name: ez_date
-    ports:
-      - 8082:80
-    

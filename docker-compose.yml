@@ -2,7 +2,7 @@ version: '3'
 services:
   pysym:
     build:
-      context: ./pysym/docker
+      context: ./pysym
       dockerfile: Dockerfile
     image: ciscn/pysym
     container_name: pysym
@@ -14,7 +14,7 @@ services:
 
   ExifT0ol:
     build:
-      context: ./ExifT0ol/docker
+      context: ./ExifT0ol
       dockerfile: Dockerfile
     image: ciscn/exiftool
     container_name: exiftool
@@ -23,7 +23,7 @@ services:
 
   ez_date:
     build:
-      context: ./ez_date/docker
+      context: ./ez_date
       dockerfile: Dockerfile
     image: ciscn/ez_date
     container_name: ez_date
@@ -32,7 +32,7 @@ services:
 
   filechecker:
     build:
-      context: ./filechecker/docker
+      context: ./filechecker
       dockerfile: Dockerfile
     image: ciscn/filechecker
     container_name: filechecker
@@ -43,7 +43,7 @@ services:
 
   ezruby:
     build:
-      context: ./ezruby/docker
+      context: ./ezruby
       dockerfile: Dockerfile
     image: ciscn/ezruby
     container_name: ezruby

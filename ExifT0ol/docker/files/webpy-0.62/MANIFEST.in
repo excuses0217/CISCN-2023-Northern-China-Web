@@ -1,5 +1,0 @@
-include requirements.txt
-include test_requirements.txt
-recursive-include docs *
-recursive-include tests *
-recursive-include tools *

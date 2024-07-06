@@ -5,7 +5,7 @@
 
 ```bash
 # 运行单个环境，请切换到相应题目目录
-cd pysym/docker
+cd pysym
 # 使用 docker-compose 一键启动环境
 docker-compose up -d
 
@@ -31,3 +31,7 @@ docker run -d -p 8080:80 pysym:latest
 ## 官方 WriteUp
 
 [Writeup-第十六届全国大学生信息安全创新实践能力赛-华北赛区](https://mp.weixin.qq.com/s/T5pw_uxLQpk2lIaNSX6n2g)
+
+
+
+### 更新：2024ciscn华北赛区线下赛题
